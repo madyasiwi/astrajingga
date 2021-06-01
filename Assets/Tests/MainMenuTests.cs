@@ -10,25 +10,48 @@ namespace madyasiwi.astrajingga.mainmenu.tests {
 
     public class MainMenuTests {
 
-        [UnityTest]
-        public IEnumerator MainMenuTest() {
+        [UnitySetUp]
+        public IEnumerator SetUp() {
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             yield return null;
+        }
+
+
+        static MainMenu FindMainMenu() {
             Scene scene = SceneManager.GetActiveScene();
-            MainMenu mainMenu = null;
             foreach (GameObject go in scene.GetRootGameObjects()) {
-                mainMenu = go.GetComponentInChildren<MainMenu>();
+                MainMenu mainMenu = go.GetComponentInChildren<MainMenu>();
                 if (mainMenu != null) {
-                    break;
+                    return mainMenu;
                 }
             }
+            return null;
+        }
+
+
+        [UnityTest]
+        public IEnumerator PlayButtonTest() {
+            MainMenu mainMenu = FindMainMenu();
             Assert.IsNotNull(mainMenu);
             if (mainMenu != null) {
                 Assert.IsNotNull(mainMenu.PlayButton);
                 mainMenu.PlayButton.onClick?.Invoke();
                 yield return null;
-                scene = SceneManager.GetActiveScene();
+                Scene scene = SceneManager.GetActiveScene();
                 Assert.AreEqual("InGame", scene.name);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator ExitButtonTest() {
+            MainMenu mainMenu = FindMainMenu();
+            Assert.IsNotNull(mainMenu);
+            if (mainMenu != null) {
+                Assert.IsNotNull(mainMenu.ExitButton);
+                int v0 = mainMenu.ExitFunctionCalls;
+                mainMenu.ExitButton.onClick?.Invoke();
+                yield return null;
+                Assert.IsTrue(mainMenu.ExitFunctionCalls > v0);
             }
         }
     }
