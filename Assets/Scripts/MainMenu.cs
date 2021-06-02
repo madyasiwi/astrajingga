@@ -48,6 +48,11 @@ namespace madyasiwi.astrajingga.ui {
         }
 
 
+        void Start() {
+            UpdateComponentStates();
+        }
+
+
         void UpdateComponentStates() {
             if (playButton != null) {
                 playButton.gameObject.SetActive(!isInGame);
