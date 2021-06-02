@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace madyasiwi.astrajingga.ui.editor {
 
     [CustomEditor(typeof(MenuBar))]
     public class MenuBarEditor : Editor {

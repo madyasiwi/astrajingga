@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,7 +8,7 @@ namespace madyasiwi.astrajingga.ui {
         [SerializeField] MenuBar menuBar;
         [SerializeField] MainMenu mainMenu;
 
-        bool mainMenuEnabled;
+        [SerializeField] bool mainMenuEnabled;
 
 
         public MenuBar MenuBar {
@@ -26,13 +24,13 @@ namespace madyasiwi.astrajingga.ui {
             set {
                 if (value != mainMenuEnabled) {
                     mainMenuEnabled = value;
-                    UpdateComponentStates();
+                    UpdateState();
                 }
             }
         }
 
 
-        void UpdateComponentStates() {
+        public void UpdateState() {
             if (menuBar != null) {
                 menuBar.gameObject.SetActive(!mainMenuEnabled);
             }

@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace madyasiwi.astrajingga.ui.editor {
 
     [CustomEditor(typeof(InGameUI))]
     public class InGameUIEditor : Editor {
@@ -13,12 +10,14 @@ namespace madyasiwi.astrajingga.ui {
 
         SerializedProperty menuBar;
         SerializedProperty mainMenu;
+        SerializedProperty mainMenuEnabled;
 
 
         void OnEnable() {
             inGameUI = target as InGameUI;
             menuBar = serializedObject.FindProperty("menuBar");
             mainMenu = serializedObject.FindProperty("mainMenu");
+            mainMenuEnabled = serializedObject.FindProperty("mainMenuEnabled");
         }
 
 
@@ -26,8 +25,10 @@ namespace madyasiwi.astrajingga.ui {
             serializedObject.Update();
             EditorGUILayout.PropertyField(menuBar);
             EditorGUILayout.PropertyField(mainMenu);
-            inGameUI.MainMenuEnabled = EditorGUILayout.Toggle("Main menu enabled", inGameUI.MainMenuEnabled);
-            serializedObject.ApplyModifiedProperties();
+            EditorGUILayout.PropertyField(mainMenuEnabled);
+            if (serializedObject.ApplyModifiedProperties()) {
+                inGameUI.UpdateState();
+            }
         }
     }
 }

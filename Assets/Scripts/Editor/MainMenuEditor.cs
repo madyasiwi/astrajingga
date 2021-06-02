@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace madyasiwi.astrajingga.ui.editor {
 
     [CustomEditor(typeof(MainMenu))]
     public class MainMenuEditor : Editor {
@@ -14,6 +11,7 @@ namespace madyasiwi.astrajingga.ui {
         SerializedProperty resumeButton;
         SerializedProperty exitButton;
         SerializedProperty onResume;
+        SerializedProperty isInGame;
 
 
         void OnEnable() {
@@ -22,6 +20,7 @@ namespace madyasiwi.astrajingga.ui {
             resumeButton = serializedObject.FindProperty("resumeButton");
             exitButton = serializedObject.FindProperty("exitButton");
             onResume = serializedObject.FindProperty("onResume");
+            isInGame = serializedObject.FindProperty("isInGame");
         }
 
 
@@ -31,8 +30,10 @@ namespace madyasiwi.astrajingga.ui {
             EditorGUILayout.PropertyField(resumeButton);
             EditorGUILayout.PropertyField(exitButton);
             EditorGUILayout.PropertyField(onResume);
-            mainMenu.IsInGame = EditorGUILayout.Toggle("Is in-game", mainMenu.IsInGame);
-            serializedObject.ApplyModifiedProperties();
+            EditorGUILayout.PropertyField(isInGame);
+            if (serializedObject.ApplyModifiedProperties()) {
+                mainMenu.UpdateState();
+            }
         }
     }
 }

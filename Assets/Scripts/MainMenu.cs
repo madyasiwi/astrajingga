@@ -17,8 +17,9 @@ namespace madyasiwi.astrajingga.ui {
 
         [SerializeField] UnityEvent onResume;
 
+        [SerializeField] bool isInGame;
+
         int exitFunctionCalls;
-        bool isInGame;
 
 
         public Button PlayButton {
@@ -37,26 +38,11 @@ namespace madyasiwi.astrajingga.ui {
             get => exitFunctionCalls;
         }
 
-        public bool IsInGame {
-            get => isInGame;
-            set {
-                if (value != isInGame) {
-                    isInGame = value;
-                    UpdateComponentStates();
-                }
-            }
-        }
-
         // Useful for tests
         public bool PreventStopPlaying { get; set; }
 
 
-        void Start() {
-            UpdateComponentStates();
-        }
-
-
-        void UpdateComponentStates() {
+        public void UpdateState() {
             if (playButton != null) {
                 playButton.gameObject.SetActive(!isInGame);
             }
