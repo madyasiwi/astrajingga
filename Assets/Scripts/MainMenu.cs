@@ -20,7 +20,7 @@ namespace madyasiwi.astrajingga.ui {
         int exitFunctionCalls;
         bool isInGame;
 
-        
+
         public Button PlayButton {
             get => playButton;
         }
@@ -46,6 +46,9 @@ namespace madyasiwi.astrajingga.ui {
                 }
             }
         }
+
+        // Useful for tests
+        public bool PreventStopPlaying { get; set; }
 
 
         void Start() {
@@ -76,7 +79,9 @@ namespace madyasiwi.astrajingga.ui {
         public void Exit() {
             exitFunctionCalls++;
 #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+            if (!PreventStopPlaying) {
+                EditorApplication.isPlaying = false;
+            }
 #else
             Application.Quit();
 #endif

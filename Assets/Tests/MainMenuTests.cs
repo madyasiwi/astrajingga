@@ -49,6 +49,7 @@ namespace madyasiwi.astrajingga.ui.tests {
             if (mainMenu != null) {
                 Assert.IsNotNull(mainMenu.ExitButton);
                 int v0 = mainMenu.ExitFunctionCalls;
+                mainMenu.PreventStopPlaying = true;
                 mainMenu.ExitButton.onClick?.Invoke();
                 yield return null;
                 Assert.IsTrue(mainMenu.ExitFunctionCalls > v0);
