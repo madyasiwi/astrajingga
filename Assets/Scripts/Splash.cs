@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace madyasiwi.astrajingga.splash {
+namespace madyasiwi.astrajingga.ui {
 
     /// <summary>
     /// Splash screen
@@ -14,13 +14,13 @@ namespace madyasiwi.astrajingga.splash {
         float remainingTime;
         bool mainMenuShown;
 
-        public bool isLoading {
+        public bool IsLoading {
             get => remainingTime > 0;
         }
 
 
         void Start() {
-            remainingTime = 5.0f;
+            remainingTime = 1.0f;
         }
 
 

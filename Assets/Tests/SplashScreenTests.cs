@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 
-namespace madyasiwi.astrajingga.splash.tests {
+namespace madyasiwi.astrajingga.ui.tests {
 
     public class SplashScreenTests {
 
@@ -27,12 +27,12 @@ namespace madyasiwi.astrajingga.splash.tests {
             Assert.IsNotNull(splash);
             if (splash != null) {
                 DateTime start = DateTime.Now;
-                while (splash.isLoading) {
+                while (splash.IsLoading) {
                     yield return null;
                 }
                 DateTime end = DateTime.Now;
                 double duration = (end - start).TotalSeconds;
-                Assert.IsTrue(duration > 4.9d && duration < 5.1d);
+                Assert.IsTrue(duration > 0.9d && duration < 1.1d);
 
                 yield return new WaitForSeconds(1.0f);
 

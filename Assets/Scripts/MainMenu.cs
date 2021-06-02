@@ -1,20 +1,32 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
-namespace madyasiwi.astrajingga.mainmenu {
+namespace madyasiwi.astrajingga.ui {
 
     public class MainMenu : MonoBehaviour {
 
         [SerializeField] Button playButton;
+        [SerializeField] Button resumeButton;
         [SerializeField] Button exitButton;
 
+        [SerializeField] UnityEvent onResume;
+
         int exitFunctionCalls;
+        bool isInGame;
 
         
         public Button PlayButton {
             get => playButton;
+        }
+
+        public Button ResumeButton {
+            get => resumeButton;
         }
 
         public Button ExitButton {
@@ -25,7 +37,25 @@ namespace madyasiwi.astrajingga.mainmenu {
             get => exitFunctionCalls;
         }
 
+        public bool IsInGame {
+            get => isInGame;
+            set {
+                if (value != isInGame) {
+                    isInGame = value;
+                    UpdateComponentStates();
+                }
+            }
+        }
 
+
+        void UpdateComponentStates() {
+            if (playButton != null) {
+                playButton.gameObject.SetActive(!isInGame);
+            }
+            if (resumeButton != null) {
+                resumeButton.gameObject.SetActive(isInGame);
+            }
+        }
 
 
         public void Play() {
@@ -33,9 +63,18 @@ namespace madyasiwi.astrajingga.mainmenu {
         }
 
 
+        public void Resume() {
+            onResume?.Invoke();
+        }
+
+
         public void Exit() {
             exitFunctionCalls++;
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
     }
 }
