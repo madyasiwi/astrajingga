@@ -7,19 +7,18 @@ using UnityEditor;
 
 namespace madyasiwi.astrajingga.build {
 
-
     public static class BuildTools {
-
 
         static bool GetGitDescription(out string name, string commit="HEAD") {
             DirectoryInfo projectDir = new DirectoryInfo(Path.GetDirectoryName(Application.dataPath));
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WorkingDirectory = projectDir.FullName;
-            startInfo.FileName = "git";
-            startInfo.Arguments = $"describe --tags {commit}";
-            startInfo.UseShellExecute = false;
-            startInfo.RedirectStandardOutput = true;
-            startInfo.RedirectStandardError = true;
+            ProcessStartInfo startInfo = new ProcessStartInfo {
+                WorkingDirectory = projectDir.FullName,
+                FileName = "git",
+                Arguments = $"describe --tags {commit}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
             Process process = new Process();
             process.StartInfo = startInfo;
             process.Start();
@@ -38,8 +37,7 @@ namespace madyasiwi.astrajingga.build {
 
         [MenuItem("Build/Update Version")]
         public static void UpdateVersionNumber() {
-            string version;
-            if (GetGitDescription(out version)) {
+            if (GetGitDescription(out string version)) {
                 PlayerSettings.bundleVersion = version;
                 UnityEngine.Debug.Log($"Version set to: {version}");
             } else {
@@ -52,11 +50,12 @@ namespace madyasiwi.astrajingga.build {
         public static void BuildPlayer() {
             string[] scenes = Array.ConvertAll<EditorBuildSettingsScene, string>(EditorBuildSettings.scenes, (s) => { return s.path; });
             DirectoryInfo buildDir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(Application.dataPath), "Build", $"{PlayerSettings.productName}.exe"));
-            BuildPlayerOptions options = new BuildPlayerOptions();
-            options.targetGroup = BuildTargetGroup.Standalone;
-            options.target = BuildTarget.StandaloneWindows;
-            options.scenes = scenes;
-            options.locationPathName = buildDir.FullName;
+            BuildPlayerOptions options = new BuildPlayerOptions {
+                targetGroup = BuildTargetGroup.Standalone,
+                target = BuildTarget.StandaloneWindows,
+                scenes = scenes,
+                locationPathName = buildDir.FullName
+            };
             BuildPipeline.BuildPlayer(options);
         }
     }
