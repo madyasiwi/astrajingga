@@ -1,0 +1,11 @@
+name: PR Checks
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check 1
+        run: echo "Check 1 run"
