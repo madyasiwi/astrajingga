@@ -1,5 +1,5 @@
 **Description**
-_[What changes does this PR make?]_
+_What changes does this PR make?_
 
 **References**
-_[Links to issues, mockups when applicable]_
+_Links to issues, mockups when applicable_
