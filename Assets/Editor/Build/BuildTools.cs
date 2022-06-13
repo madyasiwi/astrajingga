@@ -58,5 +58,9 @@ namespace madyasiwi.astrajingga.build {
             };
             BuildPipeline.BuildPlayer(options);
         }
+
+        public static void Hello() {
+            UnityEngine.Debug.Log("Hello, world!");
+        }
     }
 }

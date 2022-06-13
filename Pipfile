@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 invoke = "*"
+pygit2 = "*"
+pyyaml = "*"
 
 [dev-packages]
 
