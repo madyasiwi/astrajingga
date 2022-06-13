@@ -64,3 +64,5 @@ crashlytics-build.properties
 [Pp]ackages/
 [Pp]ackages.meta
 
+# Pipenv
+[Pp]ipfile.lock
