@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 
 namespace madyasiwi.astrajingga.ui {
@@ -9,25 +10,31 @@ namespace madyasiwi.astrajingga.ui {
     /// </summary>
     public class Splash : MonoBehaviour {
 
-        float remainingTime;
-        bool mainMenuShown;
+        public float artificialDelay = 1.0f; // For development
+        private float remainingTime;
+        private ProgressBar progressBar;
+
 
         public bool IsLoading {
             get => remainingTime > 0;
         }
 
 
+        void Awake() {
+            progressBar = GetComponentInChildren<ProgressBar>();
+        }
+
+
         void Start() {
-            remainingTime = 1.0f;
+            remainingTime = artificialDelay;
         }
 
 
         void Update() {
+            progressBar.coverage = Mathf.Max(artificialDelay - remainingTime, 0.0f) / artificialDelay;
             if (remainingTime > 0) {
                 remainingTime -= Time.deltaTime;
-            } else {
-                if (!mainMenuShown) {
-                    mainMenuShown = true;
+                if (remainingTime <= 0) {
                     SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
                 }
             }
