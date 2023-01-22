@@ -6,7 +6,7 @@ namespace madyasiwi.astrajingga.ui {
     public class ProgressBar : MonoBehaviour {
 
         [Range(0.0f, 1.0f)]
-        public float coverage;
+        public float fraction;
 
         private MaterialPropertyBlock propertyBlock;
         private CanvasRenderer renderer_;
@@ -29,7 +29,7 @@ namespace madyasiwi.astrajingga.ui {
                 material = renderer_.GetMaterial();
             }
             if (material) {
-                material.SetFloat("_Coverage", coverage);
+                material.SetFloat("_Fraction", fraction);
             }
         }
     }

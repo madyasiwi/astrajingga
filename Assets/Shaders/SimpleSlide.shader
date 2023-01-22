@@ -3,7 +3,7 @@ Shader "Unlit/SimpleSlide" {
     Properties {
         _BaseColor ("Base Color", Color) = (0, 0, 0, 1)
         _FillColor ("Fill Color", Color) = (1, 1, 1, 1)
-        _Coverage ("Coverage", Range(0.0, 1.0)) = 0
+        _Fraction ("Fraction", Range(0.0, 1.0)) = 0
     }
 
     SubShader {
@@ -32,7 +32,7 @@ Shader "Unlit/SimpleSlide" {
 
             fixed4 _BaseColor;
             fixed4 _FillColor;
-            float _Coverage;
+            float _Fraction;
 
             v2f vertexFunction(appdata v) {
                 v2f o;
@@ -43,7 +43,7 @@ Shader "Unlit/SimpleSlide" {
 
             fixed4 fragmentFunction(v2f i) : SV_Target {
                 fixed4 o;
-                if (_Coverage > i.uv.x) {
+                if (_Fraction > i.uv.x) {
                     o = _FillColor;
                 } else {
                     o = _BaseColor;
