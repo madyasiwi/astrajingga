@@ -1,10 +1,10 @@
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui.editor {
+namespace Madyasiwi.Astrajingga.UI.Editor {
 
     [CustomEditor(typeof(MainMenu))]
-    public class MainMenuEditor : Editor {
+    public class MainMenuEditor : UnityEditor.Editor {
 
         MainMenu mainMenu;
         SerializedProperty playButton;

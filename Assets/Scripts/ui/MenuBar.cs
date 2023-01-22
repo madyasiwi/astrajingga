@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace Madyasiwi.Astrajingga.UI {
 
     public class MenuBar : MonoBehaviour {
 

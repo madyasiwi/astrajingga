@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 
-namespace madyasiwi.astrajingga.ui.tests {
+namespace Madyasiwi.Astrajingga.UI.Tests {
 
     public class MainMenuTests {
 

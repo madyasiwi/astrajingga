@@ -1,10 +1,10 @@
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui.editor {
+namespace Madyasiwi.Astrajingga.UI.Editor {
 
     [CustomEditor(typeof(InGameUI))]
-    public class InGameUIEditor : Editor {
+    public class InGameUIEditor : UnityEditor.Editor {
 
         InGameUI inGameUI;
 

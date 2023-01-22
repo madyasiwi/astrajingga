@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace Madyasiwi.Astrajingga.UI.Splash {
 
     /// <summary>
     /// Splash screen

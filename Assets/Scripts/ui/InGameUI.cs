@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace Madyasiwi.Astrajingga.UI {
 
     public class InGameUI : MonoBehaviour {
 

@@ -4,9 +4,10 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Madyasiwi.Astrajingga.UI.Splash;
 
 
-namespace madyasiwi.astrajingga.ui.tests {
+namespace Madyasiwi.Astrajingga.UI.Tests {
 
     public class SplashScreenTests {
 
@@ -17,28 +18,27 @@ namespace madyasiwi.astrajingga.ui.tests {
             Scene scene = SceneManager.GetActiveScene();
             Assert.AreEqual("Splash", scene.name);
 
-            Splash splash = null;
+            Splash.Splash splash = null;
             foreach (GameObject go in scene.GetRootGameObjects()) {
-                splash = go.GetComponent<Splash>();
+                splash = go.GetComponent<Splash.Splash>();
                 if (splash != null) {
                     break;
                 }
             }
             Assert.IsNotNull(splash);
-            if (splash != null) {
-                DateTime start = DateTime.Now;
-                while (splash.IsLoading) {
-                    yield return null;
-                }
-                DateTime end = DateTime.Now;
-                double duration = (end - start).TotalSeconds;
-                Assert.IsTrue(duration > 0.9d && duration < 1.1d);
 
-                yield return new WaitForSeconds(1.0f);
-
-                scene = SceneManager.GetActiveScene();
-                Assert.AreEqual("MainMenu", scene.name);
+            DateTime start = DateTime.Now;
+            while (splash.IsLoading) {
+                yield return null;
             }
+            DateTime end = DateTime.Now;
+            double duration = (end - start).TotalSeconds;
+            Assert.IsTrue(duration > 0.9d && duration < 1.1d);
+
+            yield return new WaitForSeconds(1.0f);
+
+            scene = SceneManager.GetActiveScene();
+            Assert.AreEqual("MainMenu", scene.name);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEditor;
 #endif
 
 
-namespace madyasiwi.astrajingga.ui {
+namespace Madyasiwi.Astrajingga.UI {
 
     public class MainMenu : MonoBehaviour {
 

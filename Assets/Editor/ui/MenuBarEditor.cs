@@ -1,10 +1,10 @@
 using UnityEditor;
 
 
-namespace madyasiwi.astrajingga.ui.editor {
+namespace Madyasiwi.Astrajingga.UI.Editor {
 
     [CustomEditor(typeof(MenuBar))]
-    public class MenuBarEditor : Editor {
+    public class MenuBarEditor : UnityEditor.Editor {
 
         SerializedProperty menuButton;
         SerializedProperty onShowMenu;
